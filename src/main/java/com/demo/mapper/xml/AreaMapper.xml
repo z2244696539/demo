@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.AreaMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.demo.pojo.Area">
+        <id column="id" property="id"/>
+        <result column="area_name" property="areaName"/>
+        <result column="address" property="address"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <collection property="areaCity"
+                    select="com.demo.mapper.CityMapper.getAreaCity"
+                    column="id">
+        </collection>
+    </resultMap>
+<
+</mapper>
