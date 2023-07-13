@@ -2,12 +2,13 @@ package com.demo.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.demo.mapper.AreaMapper;
 import com.demo.pojo.Area;
 import com.demo.pojo.Result;
 import com.demo.service.AreaService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.util.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,6 +28,9 @@ public class AreaController {
     @Resource
     private AreaService areaService;
 
+    @Resource
+    private AreaMapper areaMapper;
+
     @ApiOperation(value = "条件分页查询")
     @GetMapping("{current}/{limit}")
     public Result pageList(
@@ -44,7 +48,9 @@ public class AreaController {
 
     @GetMapping("get/{id}")
     public Result get(@PathVariable Long id) {
-        Area byId = areaService.getById(id);
+
+        Area byId = areaMapper.getAreaById(id);
+
         return Result.ok(byId);
     }
 

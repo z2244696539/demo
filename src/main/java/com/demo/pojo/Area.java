@@ -1,6 +1,8 @@
 package com.demo.pojo;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Data
 @ApiModel(description = "area")
-@TableName("area")
+@TableName(value = "area",autoResultMap = true)
 public class Area {
 
 	private static final long serialVersionUID = 1L;
@@ -31,8 +33,8 @@ public class Area {
 	private List<City> areaCity;
 
 	@ApiModelProperty(value = "地址")
-	@TableField("address")
-	private List<String> address;
+	@TableField(value = "address",typeHandler = JacksonTypeHandler.class)
+	private List<Address> address;
 
 	@ApiModelProperty(value = "创建时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

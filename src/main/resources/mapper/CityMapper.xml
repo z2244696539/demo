@@ -6,8 +6,8 @@
 
 
     <select id="getAreaCity" resultType="com.demo.pojo.City">
-        select * from city where id (
-        select * from area_city  where area_id = #{areaId}
+        select * from city where id in (
+        select city_id from area_city  where area_id = #{areaId}
         )
     </select>
 </mapper>
